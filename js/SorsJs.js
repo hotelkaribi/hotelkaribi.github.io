@@ -295,6 +295,7 @@ window.SorsJs = (function (window, document, undefined) {
         $(document).ready(function () {
 
             $.getJSON("http://api.wunderground.com/api/6f65097568924354/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+				console.log( "success forecast" );
 
                 var dynamicText = '<div class="container" style="background-color:lightgrey;  ">';
                 dynamicText += '  <label class="bg-primary small">Ravda Weather</label>      ';
@@ -341,7 +342,17 @@ window.SorsJs = (function (window, document, undefined) {
                 setAngle(windDirection);
                 $('#windValue').text(windDirection + '°');
 
-            });
+            })
+            .done(function() {				
+				console.log( "second success forecast" );
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				 
+				console.log( "error forecast message: " + errorThrown );
+			})
+			.always(function() {
+				console.log( "complete forecast" );
+			});
 
         });
 
