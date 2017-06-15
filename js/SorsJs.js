@@ -263,7 +263,8 @@ window.SorsJs = (function (window, document, undefined) {
 			        
             $.getJSON("http://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
 
-
+				console.log("success setInterval");
+				
                 var windDirection = result['current_observation']['wind_degrees'];
 
                 // windDirection = getRandomInt(0, 360);
@@ -273,14 +274,14 @@ window.SorsJs = (function (window, document, undefined) {
 
             })
             .done(function() {				
-				console.log( "second success setInterval" );
+				// console.log( "second success setInterval" );
 			})
 			.fail(function(jqXHR, textStatus, errorThrown) {
 				 
 				console.log( "error setInterval message: " + errorThrown );
 			})
 			.always(function() {
-				console.log( "complete setInterval" );
+				// console.log( "complete setInterval" );
 			});
 
            
@@ -303,9 +304,8 @@ window.SorsJs = (function (window, document, undefined) {
 
     SorsJs['forecast'] = function forecast() {
         $(document).ready(function () {
-
 			
-            $.getJSON("http://api.wunderground.com/api/"+ apiKey3 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+            $.getJSON("http://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
 				console.log( "success forecast" );
 
                 var dynamicText = '<div class="container" style="background-color:lightgrey;  ">';
@@ -355,14 +355,13 @@ window.SorsJs = (function (window, document, undefined) {
 
             })
             .done(function() {				
-				console.log( "second success forecast" );
+				// console.log( "second success forecast" );
 			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				 
+			.fail(function(jqXHR, textStatus, errorThrown) {				 
 				console.log( "error forecast message: " + errorThrown );
 			})
 			.always(function() {
-				console.log( "complete forecast" );
+				// console.log( "complete forecast" );
 			});
 
         });
