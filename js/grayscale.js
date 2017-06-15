@@ -31,7 +31,15 @@ $('.navbar-collapse ul li a').click(function() {
 
 // Google Maps Scripts
 // When the window has finished loading create our google map below
-google.maps.event.addDomListener(window, 'load', init);
+ 
+//var listener1 = marker.addListener('click', aFunction);
+//google.maps.event.removeListener(listener1);
+
+//if(google.maps.event.hasEventListener('load') === false) {
+	google.maps.event.addDomListener(window, 'load', init);  
+	console.log( "add listenr google maps" );
+//}
+
 
 function init() {
     // Basic options for a simple Google Map
