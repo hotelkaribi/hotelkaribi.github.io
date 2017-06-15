@@ -1,0 +1,26 @@
+#default index page
+DirectoryIndex index.html
+
+#mod_rewrite on
+RewriteEngine on
+
+#Custom Error Documents
+ErrorDocument 400	/index.html#page-top
+ErrorDocument 401	/index.html#page-top
+ErrorDocument 403	/index.html#page-top
+ErrorDocument 404	/index.html#page-top
+ErrorDocument 500	/index.html#page-top
+
+#Hotlinking Protection
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?karibi.info/.*$ [NC]
+RewriteRule \.(js|css|jpg|gif|png|bmp|mp4|3gp|m4a|m4r|aac|mp3|ogg|wave)$ - [F]
+
+#disable brouse dir
+#Options Includes FollowSymLinks MultiViews
+
+
+
+
+
+

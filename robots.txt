@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /bg/
+Disallow: /ru/
+Disallow: /eng/
