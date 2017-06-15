@@ -259,7 +259,13 @@ window.SorsJs = (function (window, document, undefined) {
 
         setInterval(function ()
         {
-            $.getJSON("http://api.wunderground.com/api/6f65097568924354/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+        
+			// var apiKey1 = "72df18b7f213607b";
+			var apiKey2 = "6f65097568924354";
+			var apiKey3 = "deffa85bd0bf64af";
+			var apiKey4 = "c3bf18d1972e950c";
+        
+            $.getJSON("http://api.wunderground.com/api/" + apiKey4 + "/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
 
 
                 var windDirection = result['current_observation']['wind_degrees'];
