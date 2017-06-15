@@ -261,7 +261,7 @@ window.SorsJs = (function (window, document, undefined) {
         {
         
 			        
-            $.getJSON("http://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+            $.getJSON("https://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
 
 				console.log("success setInterval");
 				
