@@ -305,7 +305,7 @@ window.SorsJs = (function (window, document, undefined) {
     SorsJs['forecast'] = function forecast() {
         $(document).ready(function () {
 			
-            $.getJSON("http://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+            $.getJSON("https://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
 				console.log( "success forecast" );
 
                 var dynamicText = '<div class="container" style="background-color:lightgrey;  ">';
