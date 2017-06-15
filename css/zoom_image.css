@@ -1,0 +1,89 @@
+﻿.img-wrapper 
+{
+	display: inline-block;
+	overflow: hidden;
+}
+
+.img-wrapper img 
+{
+	-webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+    vertical-align: middle;
+}
+
+.img-wrapper img:hover 
+{
+	transform:scale(1.5);
+    -ms-transform:scale(1.5); /* IE 9 */
+    -moz-transform:scale(1.5); /* Firefox */
+    -webkit-transform:scale(1.5); /* Safari and Chrome */
+    -o-transform:scale(1.5); /* Opera */
+}
+
+
+.loadingSplash 
+{
+  position: absolute;
+  padding: 100px;
+    /*
+        z-index: 10000;
+    */
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,1);
+  color: rgba(255,255,255,1);
+  text-align: center;
+  width: 100%;
+  height: 101%;
+  opacity: 0.40;
+}
+
+.lined-heading2 
+{
+  height: 15px;
+  width:100%;
+  border-bottom: solid 2px #000;
+  text-align: center;
+  margin: 2em 0;
+}
+.lined-heading2 span 
+{
+ 
+  background: #66CCFF;
+  position: relative;
+  top: 0;
+  padding: 0 20px;
+  line-height:30px;
+}
+
+
+
+
+.lined-heading {
+	position: relative;
+	margin-top: 0;
+	margin-bottom: 50px;
+	text-align: center;
+	display: block;
+}
+
+h1.lined-heading:before, h2.lined-heading:before, h3.lined-heading:before, h4.lined-heading:before, h5.lined-heading:before, h6.lined-heading:before {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	display: block;
+	width: 100%;
+	height: 1px;
+	border-top: 2px solid #ccc;
+	content: "";
+}
+h1.lined-heading span, h2.lined-heading span, h3.lined-heading span, h4.lined-heading span, h5.lined-heading span, h6.lined-heading span {
+	position: relative;
+	z-index: 1;
+	padding: 0 20px;
+	background: #66CCFF;
+	display: inline-block;
+}
