@@ -1,9 +1,6 @@
 ﻿
-
 /* SorsJs 2.8.3  */
 ;
-
-
 
 window.SorsJs = (function (window, document, undefined) {
 
@@ -20,6 +17,10 @@ window.SorsJs = (function (window, document, undefined) {
 
     inputElem,
 
+	// apiKey1 = "72df18b7f213607b",
+	apiKey2 = "6f65097568924354",
+	apiKey3 = "deffa85bd0bf64af",
+	apiKey4 = "c3bf18d1972e950c",
 
     toString = {}.toString, tests = {},
     inputs = {},
@@ -31,9 +32,8 @@ window.SorsJs = (function (window, document, undefined) {
 
     featureName,
 
-     callerFunc = {},
-      classesProtoArr = [],
-
+    callerFunc = {},
+    classesProtoArr = [],
 
     _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
 
@@ -259,9 +259,12 @@ window.SorsJs = (function (window, document, undefined) {
 
         setInterval(function ()
         {
-            $.getJSON("http://api.wunderground.com/api/6f65097568924354/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+        
+			        
+            $.getJSON("https://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
 
-
+				console.log("success setInterval");
+				
                 var windDirection = result['current_observation']['wind_degrees'];
 
                 // windDirection = getRandomInt(0, 360);
@@ -269,9 +272,17 @@ window.SorsJs = (function (window, document, undefined) {
                 setAngle(windDirection);
                 $('#windValue').text(windDirection + '°');
 
-
-
-            });
+            })
+            .done(function() {				
+				// console.log( "second success setInterval" );
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {
+				 
+				console.log( "error setInterval message: " + errorThrown );
+			})
+			.always(function() {
+				// console.log( "complete setInterval" );
+			});
 
            
         }, 10000);
@@ -293,8 +304,9 @@ window.SorsJs = (function (window, document, undefined) {
 
     SorsJs['forecast'] = function forecast() {
         $(document).ready(function () {
-
-            $.getJSON("http://api.wunderground.com/api/6f65097568924354/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+			
+            $.getJSON("https://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+				console.log( "success forecast" );
 
                 var dynamicText = '<div class="container" style="background-color:lightgrey;  ">';
                 dynamicText += '  <label class="bg-primary small">Ravda Weather</label>      ';
@@ -341,7 +353,16 @@ window.SorsJs = (function (window, document, undefined) {
                 setAngle(windDirection);
                 $('#windValue').text(windDirection + '°');
 
-            });
+            })
+            .done(function() {				
+				// console.log( "second success forecast" );
+			})
+			.fail(function(jqXHR, textStatus, errorThrown) {				 
+				console.log( "error forecast message: " + errorThrown );
+			})
+			.always(function() {
+				// console.log( "complete forecast" );
+			});
 
         });
 
