@@ -17,10 +17,14 @@ window.SorsJs = (function (window, document, undefined) {
 
     inputElem,
 
-	// apiKey1 = "72df18b7f213607b",
+    forecastLastCheckApiResult = false,
+	apiKey1 = "72df18b7f213607b",
 	apiKey2 = "6f65097568924354",
 	apiKey3 = "deffa85bd0bf64af",
 	apiKey4 = "c3bf18d1972e950c",
+    apiKey5 = "58f1056c8a956b55",
+    apiKey6 = "944cb19195d5c3b0",
+
 
     toString = {}.toString, tests = {},
     inputs = {},
@@ -107,7 +111,7 @@ window.SorsJs = (function (window, document, undefined) {
         return !!~('' + str).indexOf(substr);
     }
 
-    
+
 
     function testDOMProps(props, obj, elem) {
         for (var i in props) {
@@ -165,69 +169,65 @@ window.SorsJs = (function (window, document, undefined) {
 
     setCss('');
     modElem = inputElem = null;
-    
+
     SorsJs._version = version;
 
-    
-    SorsJs['isInit'] = function ()
-    {
+
+    SorsJs['isInit'] = function () {
         window.onload = function () {
-            $('.loadingSplash').animate({ 'opacity': 0 }, 200, function ()
-            {
+            $('.loadingSplash').animate({ 'opacity': 0 }, 200, function () {
                 setProgress(100);
                 // hideProgress();
-                $('.loadingSplash').remove();               
-            });
-            
-            $('.mapLoader30').ready(function () {
-                var i = +getProgressValue() + +10;
-                setProgress(i);                
+                $('.loadingSplash').remove();
             });
 
-            $('.mapLoader40').ready( function () {
+            $('.mapLoader30').ready(function () {
                 var i = +getProgressValue() + +10;
-                setProgress(i);                
+                setProgress(i);
+            });
+
+            $('.mapLoader40').ready(function () {
+                var i = +getProgressValue() + +10;
+                setProgress(i);
             });
 
             $('.mapLoader60').ready(function () {
                 var i = +getProgressValue() + +10;
-                setProgress(i);                
+                setProgress(i);
             });
-            
-            $('.mapLoader80').ready( function () {
+
+            $('.mapLoader80').ready(function () {
                 var i = +getProgressValue() + +10;
-                setProgress(i);                               
+                setProgress(i);
             });
 
             $('.mapLoader100').ready(function () {
                 setProgress(100);
                 // hideProgress();             
             });
-                                   
+
         };
 
         $(window).init(function () {
             var i = 10;
             setProgress(i);
-          
+
         });
 
         $(document).ready(function () {
             var i = 20;
-            setProgress(i);           
+            setProgress(i);
         });
-        
+
         return true;
     };
 
-    function hideProgress()
-    {
+    function hideProgress() {
         var i = 0;
         $('.progress').css('height', +i + '%');
     }
-    
-    function setProgress(i)
-    {
+
+    function setProgress(i) {
         $('.progress-bar').css('width', i + '%').attr('aria-valuenow', i);
     }
 
@@ -236,8 +236,7 @@ window.SorsJs = (function (window, document, undefined) {
         return value;
     }
 
-    function setAngle(degree)
-    {        
+    function setAngle(degree) {
         $("#divForcast").animate(
             { rotation: degree },
             {
@@ -253,18 +252,16 @@ window.SorsJs = (function (window, document, undefined) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    function startBackgroundRefreshAngle()
-    {
-        
+    function startBackgroundRefreshAngle() {
 
-        setInterval(function ()
-        {
-        
-			        
-            $.getJSON("https://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
 
-				console.log("success setInterval");
-				
+        setInterval(function () {
+
+
+            $.getJSON("https://api.wunderground.com/api/" + apiKey4 + "/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+
+                console.log("success setInterval");
+
                 var windDirection = result['current_observation']['wind_degrees'];
 
                 // windDirection = getRandomInt(0, 360);
@@ -273,22 +270,22 @@ window.SorsJs = (function (window, document, undefined) {
                 $('#windValue').text(windDirection + '°');
 
             })
-            .done(function() {				
-				// console.log( "second success setInterval" );
+            .done(function () {
+                // console.log( "second success setInterval" );
+            })
+			.fail(function (jqXHR, textStatus, errorThrown) {
+
+			    console.log("error setInterval message: " + errorThrown);
 			})
-			.fail(function(jqXHR, textStatus, errorThrown) {
-				 
-				console.log( "error setInterval message: " + errorThrown );
-			})
-			.always(function() {
-				// console.log( "complete setInterval" );
+			.always(function () {
+			    // console.log( "complete setInterval" );
 			});
 
-           
+
         }, 10000);
         setAngle(0);
 
-       
+
 
     }
 
@@ -301,12 +298,16 @@ window.SorsJs = (function (window, document, undefined) {
         return s;
     }
 
-
-    SorsJs['forecast'] = function forecast() {
+    var forecastIdTry = 0;
+    SorsJs['forecast'] = function forecast(apiForestKey) {   
         $(document).ready(function () {
-			
-            $.getJSON("https://api.wunderground.com/api/"+ apiKey4 +"/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
-				console.log( "success forecast" );
+
+            if (!apiForestKey) {
+                apiForestKey = apiKey6;
+            }
+
+            $.getJSON("https://api.wunderground.com/api/" + apiForestKey + "/conditions/forecast/geolookup/q/42.63978,27.67529.json", function (result) {
+                console.log("success forecast");
 
                 var dynamicText = '<div class="container" style="background-color:lightgrey;  ">';
                 dynamicText += '  <label class="bg-primary small">Ravda Weather</label>      ';
@@ -349,31 +350,64 @@ window.SorsJs = (function (window, document, undefined) {
                 $("#divWhether").append(innerText);
 
                 // startBackgroundRefreshAngle(0);
-                            
+
                 setAngle(windDirection);
                 $('#windValue').text(windDirection + '°');
 
             })
-            .done(function() {				
-				// console.log( "second success forecast" );
+            .done(function () {
+                // console.log( "second success forecast" );
+                forecastLastCheckApiResult = true;
+                SorsJs.ForecastLastCheckApiResult = forecastLastCheckApiResult;
+            })
+			.fail(function (jqXHR, textStatus, errorThrown) {
+			    console.log("error forecast message: " + errorThrown);
+
+
+			    if (!SorsJs.ForecastLastCheckApiResult) {
+
+			        switch (forecastIdTry) {
+			            case 0:
+			                SorsJs.forecast(SorsJs.ApiKey1);
+			                break;
+			            case 1:
+			                SorsJs.forecast(SorsJs.ApiKey2);
+			                break;
+			            case 2:
+			                SorsJs.forecast(SorsJs.ApiKey3);
+			                break;
+			            case 3:
+			                SorsJs.forecast(SorsJs.ApiKey4);
+			                break;
+			            case 4:
+			                SorsJs.forecast(SorsJs.ApiKey5);
+			                break;
+			            case 5:
+			                SorsJs.forecast(SorsJs.ApiKey6);
+			                break;
+			            case 6:
+			                SorsJs.forecast(SorsJs.ApiKey7);
+			                break;
+			            default:
+			                break;
+			        }
+
+			        forecastIdTry++;
+			    }
+
 			})
-			.fail(function(jqXHR, textStatus, errorThrown) {				 
-				console.log( "error forecast message: " + errorThrown );
-			})
-			.always(function() {
-				// console.log( "complete forecast" );
+			.always(function () {
+			    // console.log( "complete forecast" );
 			});
 
         });
 
     }
 
-    SorsJs['afterLoad'] = function ()
-    {
+    SorsJs['afterLoad'] = function () {
 
-      
-        $(window).load(function ()
-        {
+
+        $(window).load(function () {
             hideProgress();
         });
 
@@ -382,16 +416,25 @@ window.SorsJs = (function (window, document, undefined) {
     };
 
     SorsJs['afterShow'] = function afterShow() {
-        $(document).ready(function () {            
-            
+        $(document).ready(function () {
+
             setProgress(100);
 
             //$('body').css('display', 'none');
             //$("body").fadeIn("slow");
-                    
+
         });
-        
+
     }
+
+    SorsJs.ForecastLastCheckApiResult = forecastLastCheckApiResult;
+    SorsJs.ApiKey1 = apiKey1;
+    SorsJs.ApiKey2 = apiKey2;
+    SorsJs.ApiKey3 = apiKey3;
+    SorsJs.ApiKey4 = apiKey4;
+    SorsJs.ApiKey5 = apiKey5;
+    SorsJs.ApiKey6 = apiKey6;
+    SorsJs.ApiKey7 = apiKey6;
 
     return SorsJs;
 
@@ -415,7 +458,7 @@ window.SorsJs = (function (window, document, undefined) {
     // =============================
 
     $.fn.progressbar = function (option) {
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this), data = $this.data('jbl.progressbar');
             if (!data)
                 $this.data('jbl.progressbar', (data = new Progressbar(this)));
