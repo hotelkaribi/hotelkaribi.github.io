@@ -25,7 +25,7 @@
     <meta name="authorship" content="https://plus.google.com/105227586670024491314" />
     <meta name="copyright" content="https://plus.google.com/105227586670024491314" />
     <meta name="publisher" content="https://plus.google.com/105227586670024491314" />
-    <meta name="verify-v1" content="mFZFhcYzcm2MtYp3JnpcgmKgQeNLZ+Db2KGXaaOkRHc="/>
+    <meta name="verify-v1" content="mFZFhcYzcm2MtYp3JnpcgmKgQeNLZ+Db2KGXaaOkRHc=" />
     <meta name="msvalidate.01" content="374673915E91B2A2D4F58FA25E323DFA" />
     <meta name="google-site-verification" content="XUNt4-ghMg21kxW1wlpdKCjG2821borKQ9w-fpCGDEc" />
 
@@ -44,7 +44,7 @@
     <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=true"></script>-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDFaB9S_MgBN3rRzEIph0Gi3kQzHcE04c&sensor=true"></script>
     <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDFaB9S_MgBN3rRzEIph0Gi3kQzHcE04c&callback=initMap" async defer></script>-->
-    
+
     <script src="js/grayscale.js"></script>
     <script type="text/javascript" src="js/modernizr.js"></script>
     <script type="text/javascript" src="js/SorsJs.js"></script>
@@ -57,16 +57,16 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-   
+
 
     <script type="text/javascript">
 
 
-    SorsJs.isInit();
+        SorsJs.isInit();
 
 
 
-    // CheckHTML5OpenUrlOnFalse("index_old.html");
+        // CheckHTML5OpenUrlOnFalse("index_old.html");
     </script>
 
     <!--<div class="alert alert-warning alert-dismissible" role="alert">
@@ -804,17 +804,17 @@
         </div>
     </section>
 
-
-
     <!-- Map Section -->
-    <div id="map" class="mapLoader100"></div>
+    <div id="map" class="mapLoader100">
+    </div>
 
     <!--<label ID="windDirection" key="windDirection" class="tr">Посока на вятър</label>
-    <div id="divForcast" class="img-circle" style="width: 50px; height: 50px; background-image: url('img/arrowUp.png')">
-        <label ID="windValue" key="windValue" class="tr small text-center text-primary" style="margin: 0px 16px ;">360°</label>
-    </div>-->
+            <div id="divForcast" class="img-circle" style="width: 50px; height: 50px; background-image: url('img/arrowUp.png')">
+                <label ID="windValue" key="windValue" class="tr small text-center text-primary" style="margin: 0px 16px ;">360°</label>
+            </div>-->
     <!--<img src="img/arrowUp.png" />
     <label key="windValue" class="tr">360°</label>-->
+
     <!-- Footer -->
     <footer>
         <div class="container text-center">
@@ -822,22 +822,22 @@
             <noscript>Your browser does not support JavaScript!</noscript>
         </div>
     </footer>
+    
 
+    <script type="text/javascript">
 
-<script type="text/javascript">
+        SorsJs.afterShow();
+        SorsJs.afterLoad();
+        SorsJs.forecast();
 
-    SorsJs.afterShow();
-    SorsJs.afterLoad();
-    SorsJs.forecast();
- <!--   
-    function initMap2() {
-        var map2 = null;
-    }
--->
-</script>
-<!--
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDFaB9S_MgBN3rRzEIph0Gi3kQzHcE04c&callback=initMap2" async defer></script>
--->
+        //function initMap2() {
+        //    var map2 = null;
+        //}
+
+    </script>
+    <!--
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDFaB9S_MgBN3rRzEIph0Gi3kQzHcE04c&callback=initMap2" async defer></script>
+    -->
 
 </body>
 
