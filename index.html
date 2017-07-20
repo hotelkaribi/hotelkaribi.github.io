@@ -143,11 +143,11 @@
                             <li class="divider"></li>
                             <li>
                                 <!--<a href="https://plus.google.com/+KaribiInfo/posts" target="_blank" class="page-scroll">Google+</a>-->
-                                <a href="https://plus.google.com/104078755280428108871/posts" target="_blank" class="page-scroll">Google+</a>
+                                <a href="https://plus.google.com/+KaribiInfoKaribi?hl=en" target="_blank" class="page-scroll">Google+</a>
                             </li>
-                            <li>
+                            <!--<li>
                                 <a href="https://www.facebook.com/karibi.info" target="_blank" class="page-scroll">Facebook</a>
-                            </li>
+                            </li>-->
                         </ul>
                     </li>
 
@@ -828,7 +828,10 @@
 
         SorsJs.afterShow();
         SorsJs.afterLoad();
-        SorsJs.forecast();
+
+        if (!SorsJs.ForecastLastCheckApiResult)
+            SorsJs.forecast(SorsJs.ApiKey1);
+                 
 
         //function initMap2() {
         //    var map2 = null;
